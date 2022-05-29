@@ -1,7 +1,6 @@
-import React from 'react';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import IndexPage from './pages';
+import LoginPage from './pages/Login/LoginPage/LoginPage';
 import { trpc } from './utils/trpc';
 
 function App() {
@@ -14,7 +13,7 @@ function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <IndexPage />
+        <LoginPage />
       </QueryClientProvider>
     </trpc.Provider>
   );

@@ -9,14 +9,19 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@chakra-ui/react": "^2.1.2",
+    "@emotion/react": "^11",
+    "@emotion/styled": "^11",
     "@trpc/client": "^9.23.6",
     "@trpc/next": "^9.23.6",
     "@trpc/react": "^9.23.6",
     "@trpc/server": "^9.23.6",
     "cors": "^2.8.5",
     "express": "^4.18.1",
+    "framer-motion": "^6",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
+    "react-hook-form": "^7.31.3",
     "react-query": "^3.39.0",
     "zod": "^3.17.3"
   },
