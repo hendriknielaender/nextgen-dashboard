@@ -2,13 +2,22 @@ import { useForm } from 'react-hook-form'
 import {
     Box,
     Button,
-    Flex,
+    Checkbox,
+    Container,
+    Divider,
     FormControl,
-    FormLabel,
     FormErrorMessage,
+    FormLabel,
+    Heading,
+    HStack,
     Input,
-    VStack
-  } from "@chakra-ui/react";
+    Stack,
+    Text,
+    useBreakpointValue,
+    useColorModeValue,
+  } from '@chakra-ui/react'
+import { OAuthButtonGroup } from './OAuthButtonGroup'
+import { PasswordField } from './PasswordField'
   
   export default function LoginPage() {
     const {
@@ -27,49 +36,58 @@ import {
       }
 
     return (
-      <Flex bg="gray.100" align="center" justify="center" h="100vh">
-        <Box bg="white" p={6} rounded="md" w={64}>
-            <form onSubmit={handleSubmit(onSubmit)}>
-                <VStack spacing={4} align="flex-start">
-                <FormControl isInvalid={!!errors.email}>
-                    <FormLabel htmlFor="email">Email Address</FormLabel>
-                    <Input
-                        id="email"
-                        placeholder='your@email.com'
-                        {...register("email", {
-                            required: "required",
-                            pattern: {
-                            value: /\S+@\S+\.\S+/,
-                            message: "Entered value does not match email format"
-                            }
-                        })}
-                        type="email" 
-                     />
-                    <FormErrorMessage>
-                        {errors.email && <span role="alert">{errors.email.message}</span>}
-                    </FormErrorMessage>
-                </FormControl>
-                <FormControl isInvalid={!!errors.password}>
-                    <FormLabel htmlFor="password">Password</FormLabel>
-                    <Input
-                        id='password'
-                        placeholder='password'
-                        {...register('password', {
-                            required: 'This is required',
-                            minLength: { value: 4, message: 'Minimum password length should be 4' },
-                        })}
-                        type="password"
-                    />
-                    <FormErrorMessage>
-                        {errors.password && errors.password.message}
-                    </FormErrorMessage>
-                </FormControl>
-                  <Button mt={4} isLoading={isSubmitting} type="submit" width="full">
-                    Login
-                  </Button>
-                </VStack>
-            </form> 
+      <Container maxW="lg" py={{ base: '12', md: '24' }} px={{ base: '0', sm: '8' }}>
+      <Stack spacing="8">
+        <Box
+          py={{ base: '0', sm: '8' }}
+          px={{ base: '4', sm: '10' }}
+          bg="white"
+          boxShadow={{ base: 'none', sm: useColorModeValue('md', 'md-dark') }}
+          borderRadius={{ base: 'none', sm: 'xl' }}
+        >
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Stack spacing="6">
+            <Stack spacing="5">
+            <FormControl isInvalid={!!errors.email}>
+            <FormLabel htmlFor="email">Email Address</FormLabel>
+                <Input
+                    id="email"
+                    {...register("email", {
+                        required: "required",
+                        pattern: {
+                        value: /\S+@\S+\.\S+/,
+                        message: "Entered value does not match email format"
+                        }
+                    })}
+                    type="email" 
+                />
+                <FormErrorMessage>
+                    {errors.email && <span role="alert">{errors.email.message}</span>}
+                </FormErrorMessage>
+            </FormControl>
+              <PasswordField />
+            </Stack>
+            <HStack justify="space-between">
+              <Checkbox defaultChecked>Remember me</Checkbox>
+              <Button variant="link" colorScheme="blue" size="sm">
+                Forgot password?
+              </Button>
+            </HStack>
+            <Stack spacing="6">
+              <Button variant="primary" isLoading={isSubmitting} type="submit" width="full">Sign in</Button>
+              <HStack>
+                <Divider />
+                <Text fontSize="sm" whiteSpace="nowrap" color="muted">
+                  or continue with
+                </Text>
+                <Divider />
+              </HStack>
+              <OAuthButtonGroup />
+            </Stack>
+          </Stack>
+          </form>
         </Box>
-      </Flex>
+      </Stack>
+    </Container>
     );
   }
