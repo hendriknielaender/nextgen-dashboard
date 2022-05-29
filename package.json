@@ -37,6 +37,9 @@
       ]
     }
   },
+  "release": {
+    "branches": ["main", "next"]
+  },
   "dependencies": {
     "@chakra-ui/react": "^2.1.2",
     "@emotion/react": "^11",
