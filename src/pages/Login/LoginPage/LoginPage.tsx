@@ -81,7 +81,7 @@ export default function LoginPage() {
               </HStack>
               <Stack spacing="6">
                 <Button
-                  variant="primary"
+                  colorScheme="purple" 
                   isLoading={isSubmitting}
                   type="submit"
                   width="full"
