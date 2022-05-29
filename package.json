@@ -9,12 +9,33 @@
     "preview": "vite preview",
     "lint": "eslint src",
     "lint:fix": "yarn lint --fix",
-    "test": "jest"
+    "test": "jest",
+    "release" : "semantic-release"
   },
   "prettier": {
     "printWidth": 80,
     "trailingComma": "all",
     "singleQuote": true
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E  HUSKY_GIT_PARAMS"
+    }
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ],
+    "rules": {
+      "subject-case": [
+        2,
+        "never",
+        [
+          "start-case",
+          "pascal-case"
+        ]
+      ]
+    }
   },
   "dependencies": {
     "@chakra-ui/react": "^2.1.2",
@@ -35,6 +56,8 @@
     "zod": "^3.17.3"
   },
   "devDependencies": {
+    "@commitlint/cli": "^17.0.1",
+    "@commitlint/config-conventional": "^17.0.0",
     "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/react": "^18.0.0",
@@ -47,8 +70,10 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-plugin-react": "^7.30.0",
     "eslint-plugin-react-hooks": "^4.5.0",
+    "husky": "^8.0.1",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2",
+    "semantic-release": "^19.0.2",
     "ts-node": "^10.8.0",
     "typescript": "^4.6.3",
     "vite": "^2.9.9",
