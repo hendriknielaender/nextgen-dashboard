@@ -31,7 +31,7 @@ import {
         <Box bg="white" p={6} rounded="md" w={64}>
             <form onSubmit={handleSubmit(onSubmit)}>
                 <VStack spacing={4} align="flex-start">
-                <FormControl>
+                <FormControl isInvalid={!!errors.email}>
                     <FormLabel htmlFor="email">Email Address</FormLabel>
                     <Input
                         id="email"
@@ -46,7 +46,7 @@ import {
                         type="email" 
                      />
                     <FormErrorMessage>
-                        {errors.email && errors.email.message}
+                        {errors.email && <span role="alert">{errors.email.message}</span>}
                     </FormErrorMessage>
                 </FormControl>
                 <FormControl isInvalid={!!errors.password}>
