@@ -1,30 +1,31 @@
 import {
-    FormControl,
-    FormErrorMessage,
-    FormLabel,
-    IconButton,
-    Input,
-    InputGroup,
-    InputProps,
-    InputRightElement,
-    useDisclosure,
-    useMergeRefs,
-  } from '@chakra-ui/react'
-  import * as React from 'react'
-  import { HiEye, HiEyeOff } from 'react-icons/hi'
-  
-  export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-    const { isOpen, onToggle } = useDisclosure()
-    const inputRef = React.useRef<HTMLInputElement>(null)
-  
-    const mergeRef = useMergeRefs(inputRef, ref)
+  FormControl,
+  FormErrorMessage,
+  FormLabel,
+  IconButton,
+  Input,
+  InputGroup,
+  InputProps,
+  InputRightElement,
+  useDisclosure,
+  useMergeRefs,
+} from '@chakra-ui/react';
+import * as React from 'react';
+import { HiEye, HiEyeOff } from 'react-icons/hi';
+
+export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>(
+  (props, ref) => {
+    const { isOpen, onToggle } = useDisclosure();
+    const inputRef = React.useRef<HTMLInputElement>(null);
+
+    const mergeRef = useMergeRefs(inputRef, ref);
     const onClickReveal = () => {
-      onToggle()
+      onToggle();
       if (inputRef.current) {
-        inputRef.current.focus({ preventScroll: true })
+        inputRef.current.focus({ preventScroll: true });
       }
-    }
-  
+    };
+
     return (
       <FormControl>
         <FormLabel htmlFor="password">Password</FormLabel>
@@ -48,7 +49,8 @@ import {
           />
         </InputGroup>
       </FormControl>
-    )
-  })
-  
-  PasswordField.displayName = 'PasswordField'
+    );
+  },
+);
+
+PasswordField.displayName = 'PasswordField';

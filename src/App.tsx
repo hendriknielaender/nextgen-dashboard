@@ -14,12 +14,12 @@ function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-      <Flex bg="gray.100" align="center" justify="center" h="100vh">
-        <LoginPage />
-      </Flex>
+        <Flex bg="gray.100" align="center" justify="center" h="100vh">
+          <LoginPage />
+        </Flex>
       </QueryClientProvider>
     </trpc.Provider>
   );
 }
 
-export default App
+export default App;
