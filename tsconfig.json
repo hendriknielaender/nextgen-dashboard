@@ -21,7 +21,12 @@
       "@components/*": ["./src/components/*"],
     }
   },
-  "include": ["src"],
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    "./*.js",
+    "./src/**/*.ts"
+  ],
   "exclude": [
     "node_modules"
   ],
