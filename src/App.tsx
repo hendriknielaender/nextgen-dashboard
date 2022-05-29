@@ -1,4 +1,11 @@
-import { Box, Flex, IconButton, Spacer, useColorMode } from '@chakra-ui/react';
+import {
+  Box,
+  Flex,
+  IconButton,
+  Spacer,
+  useColorMode,
+  useColorModeValue,
+} from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import LoginPage from './pages/Login/LoginPage/LoginPage';
@@ -14,10 +21,12 @@ function App() {
   );
   // hook which help us to toggle the color modes
   const { colorMode, toggleColorMode } = useColorMode();
+  const bg = useColorModeValue('gray.100', 'dark');
+
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <Flex bg="gray.100">
+        <Flex bg={bg}>
           <Spacer />
           <Box>
             <IconButton
@@ -29,7 +38,7 @@ function App() {
             </IconButton>
           </Box>
         </Flex>
-        <Flex bg="gray.100" align="center" justify="center" h="100vh">
+        <Flex align="center" justify="center" bg={bg}>
           <LoginPage />
         </Flex>
       </QueryClientProvider>

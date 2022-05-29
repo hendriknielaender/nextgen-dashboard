@@ -8,12 +8,10 @@ import {
   FormControl,
   FormErrorMessage,
   FormLabel,
-  Heading,
   HStack,
   Input,
   Stack,
   Text,
-  useBreakpointValue,
   useColorModeValue,
 } from '@chakra-ui/react';
 import { OAuthButtonGroup } from './OAuthButtonGroup';
@@ -25,6 +23,8 @@ export default function LoginPage() {
     register,
     formState: { errors, isSubmitting },
   } = useForm();
+
+  const bg = useColorModeValue('white', 'whiteAlpha.50');
 
   function onSubmit(values: any) {
     return new Promise<void>((resolve) => {
@@ -45,7 +45,7 @@ export default function LoginPage() {
         <Box
           py={{ base: '0', sm: '8' }}
           px={{ base: '4', sm: '10' }}
-          bg="white"
+          bg={bg}
           boxShadow={{ base: 'none', sm: useColorModeValue('md', 'md-dark') }}
           borderRadius={{ base: 'none', sm: 'xl' }}
         >
@@ -81,7 +81,7 @@ export default function LoginPage() {
               </HStack>
               <Stack spacing="6">
                 <Button
-                  colorScheme="purple" 
+                  colorScheme="blue"
                   isLoading={isSubmitting}
                   type="submit"
                   width="full"

@@ -2,14 +2,19 @@
 
 // 1. import `extendTheme` function
 import { extendTheme, type ThemeConfig } from '@chakra-ui/react';
+import { mode } from '@chakra-ui/theme-tools';
+import { Dict } from '@chakra-ui/utils';
 
-// 2. Add your color mode config
-const config: ThemeConfig = {
+const theme = extendTheme({
   initialColorMode: 'light',
   useSystemColorMode: false,
-};
-
-// 3. extend the theme
-const theme = extendTheme({ config });
+  styles: {
+    global: (props: Dict<any>) => ({
+      body: {
+        bg: mode('gray.100', 'dark')(props),
+      },
+    }),
+  },
+});
 
 export default theme;
