@@ -10,7 +10,7 @@
     "lint": "eslint src",
     "lint:fix": "yarn lint --fix",
     "test": "jest",
-    "release" : "semantic-release"
+    "release": "semantic-release"
   },
   "prettier": {
     "printWidth": 80,
@@ -38,9 +38,13 @@
     }
   },
   "release": {
-    "branches": ["main", "next"]
+    "branches": [
+      "main",
+      "next"
+    ]
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.0.1",
     "@chakra-ui/react": "^2.1.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
