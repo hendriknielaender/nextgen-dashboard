@@ -10,7 +10,8 @@
     "lint": "eslint src",
     "lint:fix": "yarn lint --fix",
     "test": "jest",
-    "release": "semantic-release"
+    "release": "semantic-release",
+    "cognito:docker": "docker-compose up -d"
   },
   "prettier": {
     "printWidth": 80,
@@ -52,7 +53,10 @@
     "@trpc/next": "^9.23.6",
     "@trpc/react": "^9.23.6",
     "@trpc/server": "^9.23.6",
+    "amazon-cognito-identity-js": "^5.2.9",
+    "aws-sdk": "^2.1145.0",
     "cors": "^2.8.5",
+    "cross-fetch": "^3.1.5",
     "express": "^4.18.1",
     "framer-motion": "^6",
     "react": "^18.0.0",
@@ -60,6 +64,7 @@
     "react-hook-form": "^7.31.3",
     "react-icons": "^4.3.1",
     "react-query": "^3.39.0",
+    "react-router-dom": "6",
     "zod": "^3.17.3"
   },
   "devDependencies": {
