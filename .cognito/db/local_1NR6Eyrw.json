@@ -1,5 +1,25 @@
 {
-  "Users": {},
+  "Users": {
+    "test@demo.com": {
+      "Attributes": [
+        {
+          "Name": "sub",
+          "Value": "bccde3fb-ece5-44aa-b0a6-a959db3988cf"
+        },
+        {
+          "Name": "email",
+          "Value": "test@demo.com"
+        }
+      ],
+      "Enabled": true,
+      "RefreshTokens": [],
+      "UserCreateDate": "2022-05-30T21:29:58.121Z",
+      "UserLastModifiedDate": "2022-05-30T21:29:58.121Z",
+      "Username": "test@demo.com",
+      "UserStatus": "CONFIRMED",
+      "ConfirmationCode": "099581"
+    }
+  },
   "Options": {
     "Policies": {
       "PasswordPolicy": {
@@ -240,10 +260,10 @@
     "UsernameAttributes": [
       "email"
     ],
-    "Arn": "arn:aws:cognito-idp:local:local:userpool/local_4y9WovNG",
-    "CreationDate": "2022-05-30T07:31:32.114Z",
-    "Id": "local_4y9WovNG",
-    "LastModifiedDate": "2022-05-30T07:31:32.114Z",
+    "Arn": "arn:aws:cognito-idp:local:local:userpool/local_1NR6Eyrw",
+    "CreationDate": "2022-05-30T21:22:30.511Z",
+    "Id": "local_1NR6Eyrw",
+    "LastModifiedDate": "2022-05-30T21:22:30.511Z",
     "Name": "NextGenDashboard"
   }
 }

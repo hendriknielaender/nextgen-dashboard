@@ -6,13 +6,13 @@ import {
 } from 'amazon-cognito-identity-js';
 import * as AWS from 'aws-sdk/global';
 
-const USERPOOL_ID = 'local_4y9WovNG';
+const USERPOOL_ID = 'local_1NR6Eyrw';
 const IDENTITY_POOL_ID = 'local';
 
 const userPool = new CognitoUserPool({
   endpoint: 'http://localhost:9229/',
-  UserPoolId: 'local_4y9WovNG',
-  ClientId: '1krqt04ofu2v3fuw5ntxqog58',
+  UserPoolId: 'local_1NR6Eyrw',
+  ClientId: 'dv80c8pqrbrxeqbcsgcwlstva',
 });
 
 export function signInUser({ email, password }: any) {
@@ -61,7 +61,7 @@ function authenticateUser(
           IdentityPoolId: IDENTITY_POOL_ID,
           Logins: {
             // Change the key below according to the specific region your user pool is in.
-            local_4y9WovNG: result.getIdToken().getJwtToken(),
+            local_1NR6Eyrw: result.getIdToken().getJwtToken(),
           },
         });
 

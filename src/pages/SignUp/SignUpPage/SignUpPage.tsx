@@ -25,8 +25,8 @@ import { PasswordField } from '../../../components/PasswordField/PasswordField';
 
 const userPool = new CognitoUserPool({
   endpoint: 'http://localhost:9229/',
-  UserPoolId: 'local_4y9WovNG',
-  ClientId: '1krqt04ofu2v3fuw5ntxqog58',
+  UserPoolId: 'local_1NR6Eyrw',
+  ClientId: 'dv80c8pqrbrxeqbcsgcwlstva',
 });
 
 export default function SingUpPage() {
