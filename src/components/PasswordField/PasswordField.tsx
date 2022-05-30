@@ -1,6 +1,5 @@
 import {
   FormControl,
-  FormErrorMessage,
   FormLabel,
   IconButton,
   Input,
@@ -27,7 +26,7 @@ export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>(
     };
 
     return (
-      <FormControl>
+      <FormControl isRequired>
         <FormLabel htmlFor="password">Password</FormLabel>
         <InputGroup>
           <InputRightElement>
@@ -54,3 +53,5 @@ export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>(
 );
 
 PasswordField.displayName = 'PasswordField';
+
+export default PasswordField;
