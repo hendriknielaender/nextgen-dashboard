@@ -15,18 +15,9 @@ import {
 import { OAuthButtonGroup } from '../../../components/OAuthButtonGroup/OAuthButtonGroup';
 import PasswordField from '../../../components/PasswordField/PasswordField';
 import 'cross-fetch';
-import {
-  CognitoUserPool,
-  CognitoUserAttribute,
-} from 'amazon-cognito-identity-js';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { Credentials, useAuth } from '../../../hooks/useAuth';
 import { useState } from 'react';
-
-const userPool = new CognitoUserPool({
-  endpoint: 'http://localhost:9229/',
-  UserPoolId: 'local_1NR6Eyrw',
-  ClientId: 'dv80c8pqrbrxeqbcsgcwlstva',
-});
 
 type CredentialsKeys = keyof Credentials;
 

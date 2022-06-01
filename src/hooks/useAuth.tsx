@@ -66,6 +66,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
  * Hook for child components to get the {@link Auth} object and re-render when it changes.
  */
 export function useAuth() {
+  // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
   return useContext(AuthContext)!;
 }
 
@@ -108,6 +109,7 @@ function useProvideAuth() {
     }
     setUser(await cognitoUserToUser(cognitoUser));
     setAuthInProgress(false);
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     return user!;
   }
 

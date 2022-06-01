@@ -13,7 +13,6 @@ import {
 } from '@chakra-ui/react';
 import { OAuthButtonGroup } from '../../../components/OAuthButtonGroup/OAuthButtonGroup';
 import PasswordField from '../../../components/PasswordField/PasswordField';
-import { signInUser } from '../../../utils/aws-cognito/authentication';
 import { Credentials, useAuth } from '../../../hooks/useAuth';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
