@@ -10,3 +10,18 @@ services:
     restart: always
     environment:
       NODE_TLS_REJECT_UNAUTHORIZED: 0
+  mysql:
+    image: mysql:8
+    ports:
+      - 3306:3306
+    volumes:
+      - db:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/0_init.sql
+    environment:
+      - MYSQL_ROOT_PASSWORD=S3cret
+      - MYSQL_PASSWORD=An0thrS3crt
+      - MYSQL_USER=dashboard_user
+      - MYSQL_DATABASE=dashboard_db
+volumes:
+  db:
+    driver: local
