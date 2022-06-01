@@ -11,7 +11,7 @@
     "lint:fix": "yarn lint --fix",
     "test": "jest",
     "release": "semantic-release",
-    "cognito:docker": "docker-compose up -d"
+    "docker": "docker-compose up -d"
   },
   "prettier": {
     "printWidth": 80,
@@ -51,6 +51,7 @@
     "@chakra-ui/react": "^2.1.2",
     "@emotion/react": "^11",
     "@emotion/styled": "^11",
+    "@prisma/client": "^3.14.0",
     "@trpc/client": "^9.23.6",
     "@trpc/next": "^9.23.6",
     "@trpc/react": "^9.23.6",
@@ -88,6 +89,7 @@
     "husky": "^8.0.1",
     "nodemon": "^2.0.16",
     "prettier": "^2.6.2",
+    "prisma": "^3.14.0",
     "semantic-release": "^19.0.2",
     "ts-node": "^10.8.0",
     "typescript": "^4.6.3",
