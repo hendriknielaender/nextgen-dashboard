@@ -5,24 +5,25 @@ import {
   FormControl,
   Input,
   Button,
-  Checkbox,
   Divider,
   HStack,
   Stack,
   Text,
+  Heading,
+  useBreakpointValue,
 } from '@chakra-ui/react';
 import { OAuthButtonGroup } from '../../../components/OAuthButtonGroup/OAuthButtonGroup';
 import PasswordField from '../../../components/PasswordField/PasswordField';
+import 'cross-fetch';
+import { CognitoUserPool } from 'amazon-cognito-identity-js';
 import { Credentials, useAuth } from '../../../hooks/useAuth';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 
 type CredentialsKeys = keyof Credentials;
 
-export default function LoginForm() {
+export default function SignUpForm() {
   const methods = useForm();
   const auth = useAuth();
-  const navigate = useNavigate();
 
   const [credentials, setCredentials] = useState<Credentials>({
     email: '',
@@ -31,35 +32,55 @@ export default function LoginForm() {
 
   async function onSubmit(credentials: any) {
     console.log({ credentials });
-
     const key = credentials.email as CredentialsKeys;
     setCredentials({
       ...credentials,
       [key]: credentials,
     });
 
-    await auth
-      .logIn(credentials)
-      .then((user) => {
-        console.log(`successfully logged in ${JSON.stringify(user, null, 4)}`);
-        navigate(`/private`);
-      })
-      .catch((err) => {
-        console.error({
-          message: 'Error',
-          description: err.message,
-        });
-
-        console.log(err);
-      });
+    const User = await auth.signUp({ ...credentials });
+    console.info(User);
   }
-
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
         <Stack spacing="6">
+          <Stack spacing="6">
+            <Stack spacing={{ base: '2', md: '3' }} textAlign="center">
+              <Heading size={useBreakpointValue({ base: 'xl', md: 'md' })}>
+                Create an account
+              </Heading>
+              <HStack spacing="1" justify="center">
+                <Text color="muted">Already have an account?</Text>
+                <Button variant="link" colorScheme="blue">
+                  Log in
+                </Button>
+              </HStack>
+            </Stack>
+          </Stack>
           <Stack spacing="5">
-            <FormControl isInvalid={!!methods.formState.errors.email}>
+            <FormControl isInvalid={!!methods.formState.errors.name} isRequired>
+              <FormLabel htmlFor="name">Name</FormLabel>
+              <Input
+                id="name"
+                {...methods.register('name', {
+                  required: 'required',
+                })}
+              />
+              <FormErrorMessage>
+                {methods.formState.errors.name && (
+                  <span role="alert">
+                    {methods.formState.errors.name.message}
+                  </span>
+                )}
+              </FormErrorMessage>
+            </FormControl>
+          </Stack>
+          <Stack spacing="5">
+            <FormControl
+              isInvalid={!!methods.formState.errors.email}
+              isRequired
+            >
               <FormLabel htmlFor="email">Email Address</FormLabel>
               <Input
                 id="email"
@@ -82,12 +103,6 @@ export default function LoginForm() {
             </FormControl>
             <PasswordField />
           </Stack>
-          <HStack justify="space-between">
-            <Checkbox defaultChecked>Remember me</Checkbox>
-            <Button variant="link" colorScheme="blue" size="sm">
-              Forgot password?
-            </Button>
-          </HStack>
           <Stack spacing="6">
             <Button
               colorScheme="blue"
@@ -95,12 +110,12 @@ export default function LoginForm() {
               type="submit"
               width="full"
             >
-              Sign in
+              Create Account
             </Button>
             <HStack>
               <Divider />
               <Text fontSize="sm" whiteSpace="nowrap" color="muted">
-                or continue with
+                or sign up with
               </Text>
               <Divider />
             </HStack>
