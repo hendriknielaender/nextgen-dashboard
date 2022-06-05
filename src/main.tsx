@@ -3,9 +3,9 @@ import { ChakraProvider } from '@chakra-ui/react';
 import ReactDOM from 'react-dom/client';
 import App from './App';
 import theme from './utils/theme';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import SingUpPage from './pages/SignUp/SignUpPage/SignUpPage';
-import { AuthProvider } from './hooks/useAuth';
+import { AuthProvider, useAuth } from './hooks/useAuth';
 import AuthenticatedOutlet from './components/AuthenticatedOutlet/AuthenticatedOutlet';
 import LoginPage from './pages/Login/LoginPage/LoginPage';
 import IndexPage from './pages';
@@ -21,12 +21,25 @@ root.render(
           <Routes>
             <Route path="/" element={<LoginPage />} />
             <Route path="/signup" element={<SingUpPage />} />
-            <Route path="/private" element={<AuthenticatedOutlet />}>
+            <Route path="/private2" element={<AuthenticatedOutlet />}>
               <Route element={<IndexPage />} />
             </Route>
+            <Route
+              path="/private"
+              element={
+                <PrivateRoute>
+                  <IndexPage />
+                </PrivateRoute>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </AuthProvider>
     </ChakraProvider>
   </React.StrictMode>,
 );
+
+function PrivateRoute({ children }: any) {
+  const auth = useAuth();
+  return auth ? children : <Navigate to="/" />;
+}
