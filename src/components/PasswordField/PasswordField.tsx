@@ -7,18 +7,20 @@ import {
   InputProps,
   InputRightElement,
   useDisclosure,
+  useMergeRefs,
 } from '@chakra-ui/react';
 import * as React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { HiEye, HiEyeOff } from 'react-icons/hi';
 
 export const PasswordField = React.forwardRef<HTMLInputElement, InputProps>(
-  (props) => {
+  (props, ref) => {
     const { register } = useFormContext();
 
     const { isOpen, onToggle } = useDisclosure();
     const inputRef = React.useRef<HTMLInputElement>(null);
 
+    const mergeRef = useMergeRefs(inputRef, ref);
     const onClickReveal = () => {
       onToggle();
       if (inputRef.current) {

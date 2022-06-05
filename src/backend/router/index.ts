@@ -3,14 +3,45 @@ import * as trpcExpress from '@trpc/server/adapters/express';
 import express from 'express';
 import cors from 'cors';
 import { z } from 'zod';
+import { prisma } from '../utils/prisma';
 
-const appRouter = trpc.router().query('getUser', {
-  input: z.string(),
-  async resolve(req) {
-    req.input; // string
-    return { id: req.input, name: 'Bilbo' };
-  },
-});
+const appRouter = trpc
+  .router()
+  .query('allTodos', {
+    resolve: () => prisma.todo.findMany(),
+  })
+  .query('infiniteTodos', {
+    input: z.object({
+      limit: z.number().min(1).max(100).nullish(),
+      cursor: z.number().nullish(), // <-- "cursor" needs to exist, but can be any type
+    }),
+    async resolve({ input }) {
+      console.log({ input });
+      //const limit = input.limit ?? 50;
+      const limit = 10;
+      const { cursor } = input;
+      const items = await prisma.todo.findMany({
+        take: limit + 1, // get an extra item at the end which we'll use as next cursor
+        cursor: cursor ? { id: cursor } : undefined,
+        orderBy: {
+          id: 'asc',
+        },
+      });
+
+      console.log({ items });
+
+      let nextCursor: typeof cursor | null = null;
+      if (items.length > limit) {
+        const nextItem = items.pop();
+        nextCursor = nextItem!.id;
+      }
+
+      return {
+        items,
+        nextCursor,
+      };
+    },
+  });
 //.mutation('createUser', {
 // validate input with Zod
 //input: z.object({ name: z.string().min(5) }),
