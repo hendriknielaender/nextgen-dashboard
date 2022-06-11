@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { TodoContextType, ITodo } from '../types/types.todo';
 import { TodoContext } from '../context/todoContext';
-import ToDo from '../components/ToDo/ToDo';
 import {trpc} from '../utils/trpc';
 
-const ToDos = () => {
+
+export const getTodos = () => {
   let { todos, updateTodo } = React.useContext(TodoContext) as TodoContextType;
 
   const queryAllTodos = trpc.useInfiniteQuery(
@@ -19,17 +19,9 @@ const ToDos = () => {
       },
     );
     if (!queryAllTodos.data) {
-      return <>"Loading..."</>;
+      console.log("Loading...");
     };
     
-  todos = queryAllTodos.data?.pages[0].items as any
-  return (
-    <>
-      {todos.map((todo: ITodo) => (
-        <ToDo key={todo.id} updateTodo={updateTodo} todo={todo} />
-      ))}
-    </>
-  );
+   return queryAllTodos.data?.pages[0].items as any
 };
 
-export default ToDos;
