@@ -9,6 +9,7 @@ import { AuthProvider, useAuth } from './hooks/useAuth';
 import AuthenticatedOutlet from './components/AuthenticatedOutlet/AuthenticatedOutlet';
 import LoginPage from './pages/Login/LoginPage/LoginPage';
 import IndexPage from './pages';
+import Layout from './components/Layout/Layout';
 
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 const root = ReactDOM.createRoot(document.getElementById('root')!);
@@ -28,7 +29,9 @@ root.render(
               path="/private"
               element={
                 <PrivateRoute>
-                  <IndexPage />
+                  <Layout>
+                    <App />
+                  </Layout>
                 </PrivateRoute>
               }
             />

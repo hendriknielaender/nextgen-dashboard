@@ -8,9 +8,9 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import LoginPage from './pages/Login/LoginPage/LoginPage';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 import { trpc } from './utils/trpc';
+import IndexPage from './pages/index';
 
 function App() {
   const [queryClient] = useState(() => new QueryClient());
@@ -26,20 +26,8 @@ function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        <Flex bg={bg}>
-          <Spacer />
-          <Box>
-            <IconButton
-              m={4}
-              aria-label="Toggle Mode"
-              onClick={toggleColorMode}
-            >
-              {colorMode === 'light' ? <MoonIcon /> : <SunIcon />}
-            </IconButton>
-          </Box>
-        </Flex>
         <Flex align="center" justify="center" bg={bg}>
-          <LoginPage />
+          <IndexPage />
         </Flex>
       </QueryClientProvider>
     </trpc.Provider>
