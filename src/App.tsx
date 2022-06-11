@@ -1,8 +1,4 @@
-import {
-  Flex,
-  useColorMode,
-  useColorModeValue,
-} from '@chakra-ui/react';
+import { Flex, useColorMode, useColorModeValue } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { trpc } from './utils/trpc';
@@ -19,7 +15,7 @@ function App() {
   return (
     <trpc.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-          <IndexPage />
+        <IndexPage />
       </QueryClientProvider>
     </trpc.Provider>
   );
