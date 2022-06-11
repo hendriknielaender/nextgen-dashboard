@@ -17,8 +17,10 @@ const appRouter = trpc
     }),
     async resolve({ input }) {
       console.log({ input });
-      //const limit = input.limit ?? 50;
-      const limit = 10;
+      let limit = 50;
+      if (input.limit) {
+        limit = input.limit;
+      }
       const { cursor } = input;
       const items = await prisma.todo.findMany({
         take: limit + 1, // get an extra item at the end which we'll use as next cursor

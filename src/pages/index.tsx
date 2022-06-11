@@ -10,7 +10,8 @@ const table = createTable().setRowType<ITodo>();
 //@ts-ignore
 function PaginatedTable(attr: any) {
   const { todos } = attr;
-  console.log({ todos });
+
+  console.log({ attr });
 
   const columns = React.useMemo(
     () => [
@@ -18,14 +19,16 @@ function PaginatedTable(attr: any) {
         header: 'ToDo',
         footer: (props) => props.column.id,
         columns: [
+          table.createDataColumn('id', {
+            cell: (info) => info.getValue(),
+            footer: (props) => props.column.id,
+          }),
           table.createDataColumn('title', {
             cell: (info) => info.getValue(),
             footer: (props) => props.column.id,
           }),
-          table.createDataColumn('description', {
-            id: 'description',
-            cell: (info) => info.getValue(),
-            header: () => <span>Description</span>,
+          table.createDataColumn('status', {
+            header: 'Completed',
             footer: (props) => props.column.id,
           }),
         ],
@@ -34,7 +37,7 @@ function PaginatedTable(attr: any) {
     [],
   );
 
-  const [data, setData] = React.useState(() => todos);
+  const [data, setData] = React.useState(() => attr.todos.pages[0].items);
 
   const [pagination, setPagination] = React.useState<PaginationState>({
     pageIndex: 0,
@@ -59,7 +62,7 @@ export default function IndexPage() {
     [
       'infiniteTodos',
       {
-        limit: 10,
+        limit: 100,
       },
     ],
     {
@@ -70,11 +73,11 @@ export default function IndexPage() {
     return <>"Loading..."</>;
   }
 
-  const todos = queryAllTodos.data?.pages[0].items as ITodo[];
+  const todosQuery = queryAllTodos.data;
 
   return (
     <TodoProvider>
-      <PaginatedTable todos={todos} />
+      <PaginatedTable todos={todosQuery} />
     </TodoProvider>
   );
 }
