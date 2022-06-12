@@ -10,6 +10,18 @@ services:
     restart: always
     environment:
       NODE_TLS_REJECT_UNAUTHORIZED: 0
+  localstack:
+    image: localstack/localstack:latest
+    environment: 
+      - AWS_DEFAULT_REGION=eu-central-1
+      - EDGE_PORT=4566
+      - SERVICES=s3
+      - DATA_DIR=/tmp/localstack/data
+    ports: 
+      - '4566-4583:4566-4583'
+    volumes: 
+      - "./localstack/s3:/tmp/localstack"
+      - "/var/run/docker.sock:/var/run/docker.sock"
   mysql:
     image: mysql:8
     ports:
